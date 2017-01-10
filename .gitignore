@@ -1,3 +1,30 @@
+# osx noise
+.DS_Store
+profile
+
+# ignore sass caches
+.sass-cache
+
+# ignore sublime projects
+.sublime-project
+.sublime-workspace
+
+# ignore packages 
+node_modules
+bower_components
+jspm_packages
+
+# ignore generated files and folders
+*.css
+dist
+
+# ignore source and processing images
+app/images_src
+app/responsive
+
+# ignore creds
+secrets.json
+
 # Logs
 logs
 *.log
@@ -25,10 +52,6 @@ coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
-
-# Dependency directories
-node_modules
-jspm_packages
 
 # Optional npm cache directory
 .npm
