@@ -68,7 +68,7 @@ gulp.task('build', function(callback) {
 // nunjucks to render html
 gulp.task('nunjucks', function() {
  // gets .html and .njk files in pages
- return gulp.src('app/pages/**/*.+(html|njk)')
+ return gulp.src('app/templates/pages/**/*.+(html|njk)')
  .pipe(customPlumber('Error Running Nunjucks'))
  // adding data to Nunjucks parsed to JSON so watchable
  .pipe(data(function() {
