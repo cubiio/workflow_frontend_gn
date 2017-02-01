@@ -72,7 +72,7 @@ gulp.task('nunjucks', function() {
  .pipe(customPlumber('Error Running Nunjucks'))
  // adding data to Nunjucks parsed to JSON so watchable
  .pipe(data(function() {
-    return JSON.parse(fs.readFileSync('./app/data.json'))
+    return JSON.parse(fs.readFileSync('./app/templates/njk_data.json'))
  }))
  // renders nunjuck files
  .pipe(nunjucksRender({
