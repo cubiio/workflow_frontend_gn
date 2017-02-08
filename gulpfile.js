@@ -5,7 +5,7 @@ const data = require('gulp-data');
 const $ = require('gulp-load-plugins')();
 const browserSync = require('browser-sync');
 const surge = require('gulp-surge');
-const rsync = require('rsyncwrapper').rsync;
+const rsync = require('rsyncwrapper');
 const Server = require('karma').Server;
 const spritesmith = require('gulp.spritesmith');
 const psi = require('psi');
@@ -34,8 +34,14 @@ const creds =  require('/Users/samatkins/projects/info/secrets.json');
 // combined dev task
 gulp.task('default', function(callback) {
     runSequence(
-        'clean:dev', 
-        ['sprites', 'lint:js', 'lint:scss'],
+        'clean:dev',
+
+        // toggle: lint ON
+        // ['sprites', 'lint:js', 'lint:scss'],
+        
+        // toggle: lint OFF
+        ['sprites'],
+
         ['sass', 'nunjucks', 'images'],
         ['browserSync', 'watch'],
         callback
@@ -47,7 +53,7 @@ gulp.task('default', function(callback) {
 gulp.task('build', function(callback) {
     runSequence(
         ['clean:dev', 'clean:dist'],
-        ['sprites', 'lint:js', 'lint:scss'],
+        ['sprites', 'lint:js'],
         ['sass', 'nunjucks'],
         ['useref', 'build-images', 'fonts'],
 
@@ -127,7 +133,7 @@ gulp.task('browserSync', function() {
         server: {
             baseDir: 'app'
         },
-        browser: 'google chrome',
+        browser: 'google chrome canary',
         notify: false
     })
 })
@@ -140,9 +146,8 @@ gulp.task('watch', function() {
         'app/pages/**/*.+(html|njk)',
         'app/data.json'
         ], ['nunjucks'])
-    gulp.watch(config.sass.src, ['sass', 'lint:scss']);
+    gulp.watch(config.sass.src, ['sass']);
     gulp.watch(config.js.src, ['watch-js']);
-    // add to config 
     gulp.watch(config.html.src, browserSync.reload);
 });
 
@@ -357,6 +362,14 @@ gulp.task('lint:js', function() {
     .pipe($.jshint.reporter ('fail', config.jshint.reporterOptions))
     .pipe($.jscs(config.jscs.options))
     .pipe(gulp.dest(config.jscs.dest))
+});
+
+// combined linter
+gulp.task('lint', function(callback) {
+    runSequence(
+        ['lint:js', 'lint:scss'],
+        callback
+        );
 });
 
 
