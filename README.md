@@ -29,12 +29,13 @@ If/when moving top level folder `workflow`, take care to also move `.hidden` fil
 
 ### Install dependencies
 
-Dependencies are saved in `package.json` and `bower.json`.
+To install packages/dependencies:
 
-```
-$ bower install
-$ npm install
-```
+| File | Command run|  
+| --- | --- |  
+|`package.json` | `npm install`|  
+|`bower.json` | `bower install`| 
+
 
 #### Check all dependencies are installed. 
 
