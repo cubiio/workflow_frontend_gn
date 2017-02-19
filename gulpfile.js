@@ -37,10 +37,10 @@ gulp.task('default', function(callback) {
         'clean:dev',
 
         // toggle: lint ON
-        // ['sprites', 'lint:js', 'lint:scss'],
+        ['sprites', 'lint:js', 'lint:scss'],
         
         // toggle: lint OFF
-        ['sprites'],
+        // ['sprites'],
 
         ['sass', 'nunjucks', 'images'],
         ['browserSync', 'watch'],
